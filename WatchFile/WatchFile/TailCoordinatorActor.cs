@@ -1,7 +1,7 @@
 ﻿using Akka.Actor;
 using System;
 
-namespace WinTail
+namespace WatchFile
 {
     public class TailCoordinatorActor : UntypedActor
     {

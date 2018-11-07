@@ -13,11 +13,6 @@ namespace WatchFile
         public const string ExitCommand = "exit";
         private readonly IActorRef _validationActor;
 
-        public ConsoleReaderActor(IActorRef validationActor)
-        {
-            _validationActor = validationActor;
-        }
-
         protected override void OnReceive(object message)
         {
             if (message.Equals(StartCommand))
@@ -50,8 +45,7 @@ namespace WatchFile
                 return;
             }
 
-            // otherwise, just hand message off to validation actor (by telling its actor ref)
-            _validationActor.Tell(message);
+            Context.ActorSelection("akka://MyActorSystem/user/validationActor").Tell(message);
         }
         #endregion
     }
